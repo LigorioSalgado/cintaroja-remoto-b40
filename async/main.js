@@ -1,8 +1,4 @@
-let datos = [
-    {'name':'Edwin','age':27,'city':'CDMX'},
-    {'name':'Luis','age':19,'city':'Durango'},
-    {'name':'Ana','age':24,'city':'EdoMex'},
-]
+
 
 // let boton =  document.getElementById('mybutton')
 // boton.addEventListener('click',function(){
@@ -10,16 +6,23 @@ let datos = [
 // })
 
 function getUsuarios(callback){
+    let datos = [
+        {'name':'Edwin','age':27,'city':'CDMX'},
+        {'name':'Luis','age':19,'city':'Durango'},
+        {'name':'Ana','age':24,'city':'EdoMex'},
+    ]
     setTimeout(function(){
-        callback(datos)
+        callback(datos,"Todo chido")
+        console.log("Despues de callback")
     },2000)
 }
 
 console.log("Bienvenido Obteniendo Datos ")
 
-getUsuarios(function(datos){
-    console.log(datos)
+getUsuarios(function(data,text){
+    console.log(data)
     console.log("Usuarios recibidos")
+    console.log(text)
 
 })
 
@@ -42,6 +45,6 @@ saludo(function(){
     console.log("desde una funcion anonima")
 })
 
-saludo()
+//saludo()
 
 
