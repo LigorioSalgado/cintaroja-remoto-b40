@@ -1,0 +1,14 @@
+{
+  "name": "funcional",
+  "version": "1.0.0",
+  "description": "Un poquito de programacion funcional",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Edwin Salgado",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.88.2"
+  }
+}

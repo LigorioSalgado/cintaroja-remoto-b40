@@ -21,5 +21,5 @@ function atrapar(error, response, body){ //Este es mi callback
 //     console.log(response.statusCode) // 200
 //     console.log(body)
 // }
-
 request('https://swapi.dev/api/people/', atrapar)
+
