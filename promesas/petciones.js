@@ -47,10 +47,9 @@ function getProfile(id){
         return response.data //esto esta regresando otra promesa estoy regresando el personaje
     }).then((personaje) => {
         return axios.get(personaje.homeworld).then((response) =>{
-            return "desde dentro de la promesa" //split object es6 crea una copia de un objeto
+            return {...personaje,homeworld:response.data} //split object es6 crea una copia de un objeto
         })  
     }).then((personaje) => {
-        console.log(per)
         console.log("El personaje que escogiste es: ", personaje.name)
         console.log("Nacio en el año: ", personaje.birth_year)
         console.log("Tiene el genero: ", personaje.gender)
@@ -61,7 +60,6 @@ function getProfile(id){
     }).catch((error) => {
         console.log(error.response.data)
     })
-    
 
 
     // character.then((response) => {
@@ -82,4 +80,4 @@ function getProfile(id){
 
 }
 
-getProfile(5)
+getProfile(2)
