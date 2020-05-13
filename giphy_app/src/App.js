@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import axios from 'axios'; 
+import CardGif from './CardGif';
 
 function App() {
   const URL = 'https://api.giphy.com/v1/gifs/search?api_key=pqpMKMEFrBUb427UCUNV2tuAffbHsExy&q='
@@ -47,12 +48,7 @@ function App() {
         <div className="row mt-5">
           { gifs.length > 0 ? gifs.map((gif) => {
             return(
-              <div className="col-12 col-sm-12 col-md-4 col-lg-4 card-deck my-5">
-                <div className="card bg-dark text-white">
-                    <img className="card-img" alt="" src={gif.images.downsized_large.url} />
-                    <h5 className="card-title">{gif.title}</h5>
-                </div>
-              </div>
+              <CardGif title={gif.title} url={gif.images.downsized_large.url} />
             )
           }) : (
             <div className="col-12">
