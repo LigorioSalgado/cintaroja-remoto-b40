@@ -5,12 +5,14 @@ import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Home from './components/Home';
+import CreateTodo from './components/CreateTodo';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={Home} />
+        <Route path="/createTodo" exact component={CreateTodo} />
       </Switch>
     </BrowserRouter>
   </React.StrictMode>,

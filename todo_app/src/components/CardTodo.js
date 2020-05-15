@@ -4,9 +4,9 @@ import React from 'react';
 function CardTodo(props){
 
     const bg ={
-        "1":"card text-white bg-success",
-        "2":"card text-white bg-warning",
-        "3":"card text-white bg-danger"
+        "1":"card text-white bg-success my-3",
+        "2":"card text-white bg-warning my-3",
+        "3":"card text-white bg-danger my-3"
     }
 
     return(

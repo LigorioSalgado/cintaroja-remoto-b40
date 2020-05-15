@@ -1,9 +1,9 @@
 import React , { useState } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import '../App.css';
 import axios from 'axios';
+import Navbar from './Navbar';
 
-function App() {
+function CreateTodo(props) {
   const [user,setUser] = useState('');
   const [todo,setTodo] = useState('');
   const [prioridad, setPrioridad] = useState('3');
@@ -19,7 +19,8 @@ function App() {
     axios.post('https://todoapp-e1226.firebaseio.com/todos.json', 
     { user,todo, prioridad}).then(() => {
       alert("Se a creado el Todo con exito")
-      clear()
+      //clear()
+      props.history.push('/') //Fuerza el redirect de crearTodo a home
     }).catch(() => {
       alert("Hubo un problema al crear el todo")
     }) //Naming principle Es6
@@ -28,6 +29,7 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar />
       <div className="container">
         <div className="row">
           <div className="col-12 col-lg-8 col-md-8 col-sm-8">
@@ -72,4 +74,4 @@ function App() {
   );
 }
 
-export default App;
+export default CreateTodo;
