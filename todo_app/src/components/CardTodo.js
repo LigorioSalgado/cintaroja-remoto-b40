@@ -18,3 +18,5 @@ function CardTodo(props){
         </div>
     )
 }
+
+export default CardTodo
