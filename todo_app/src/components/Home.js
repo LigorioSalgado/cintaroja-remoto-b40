@@ -1,6 +1,7 @@
 import React, { useState, useEffect  } from 'react';
 import axios from 'axios';
 import CardTodo from './CardTodo';
+import Navbar from './Navbar';
 
 
 function Home(){
@@ -16,7 +17,7 @@ function Home(){
                     const [id,data] = todo; //Estoy destructurando el arreglo de adentro
                     return {
                         id,
-                        ...data //splitobject hago una copia de la data
+                        ...data //split object hago una copia de la data
                     }
                 } )
                 console.log(realData)
@@ -27,11 +28,24 @@ function Home(){
     },[])
 
     return(
-        <div className="container mt-5 pt-5">
-            <div className="row justify-content-center">
-                <div className="col-12 col-sm-8 col-md-8 col-lg-8">
-                 {todos.map( (todo) => (<CardTodo nombre={todo.user} 
-                    todo={todo.todo} prioridad={todo.prioridad} />))}
+        <div className="App">
+            <Navbar/>
+            <div className="container mt-5 pt-5">
+                <div className="row justify-content-center mb-5">
+                    <div className="col-4">
+                        <a href="/createTodo" className="btn btn-lg bg-dark text-white">
+                          Crear to-do
+                        </a>
+                    </div>
+                </div>
+                <div className="row justify-content-center">   
+                    {todos.map( (todo) => (
+                        <div className="col-12 col-sm-8 col-md-8 col-lg-8 my-2">
+                            <CardTodo nombre={todo.user} 
+                                todo={todo.todo} prioridad={todo.prioridad} />
+                        </div>
+                    ))}
+
                 </div>
             </div>
         </div>
