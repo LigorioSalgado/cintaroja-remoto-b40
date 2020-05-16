@@ -3,6 +3,7 @@ import axios from 'axios';
 import CardTodo from './CardTodo';
 import Navbar from './Navbar';
 import ModalEdit from './ModalEdit';
+import ModalDelete from './ModalDelete';
 
 
 function Home(){
@@ -11,6 +12,7 @@ function Home(){
     const [todosBaja,setTodosBaja] = useState([])
     const [isOpen,setIsOpen] = useState(false)
     const [currentTodo,setCurrentTodo] = useState({})
+    const [isOpenDelete, setIsOpenDelete] = useState(false)
 
 
     useEffect(() => {
@@ -62,6 +64,10 @@ function Home(){
                                         setCurrentTodo(todo); 
                                         setIsOpen(true) 
                                     }}
+                                    delete={() => {
+                                        setCurrentTodo(todo); 
+                                        setIsOpenDelete(true) 
+                                    }}
                                 />
                             )
                         }) }
@@ -77,6 +83,10 @@ function Home(){
                                     edit={() => { 
                                         setCurrentTodo(todo); 
                                         setIsOpen(true) 
+                                    }}
+                                    delete={() => {
+                                        setCurrentTodo(todo); 
+                                        setIsOpenDelete(true) 
                                     }}
                                 />
                             )
@@ -94,6 +104,10 @@ function Home(){
                                         setCurrentTodo(todo); 
                                         setIsOpen(true) 
                                     }}
+                                    delete={() => {
+                                        setCurrentTodo(todo); 
+                                        setIsOpenDelete(true) 
+                                    }}
                                 />
                             )
                         }) }
@@ -102,6 +116,7 @@ function Home(){
                 </div>
             </div>
             <ModalEdit open={isOpen} close={setIsOpen} todo={currentTodo} />
+            <ModalDelete open={isOpenDelete} close={setIsOpenDelete} todo={currentTodo} />
         </div>
     )
 

@@ -13,7 +13,7 @@ function CardTodo(props){
         <div className={bg[props.prioridad]}>
             <div className="card-header">  
                 Creado por:{props.nombre}
-                <button className="close">
+                <button onClick={() => props.delete()} className="close">
                     <span>&times;</span>
                 </button>
             </div>
