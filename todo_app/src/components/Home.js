@@ -2,12 +2,14 @@ import React, { useState, useEffect  } from 'react';
 import axios from 'axios';
 import CardTodo from './CardTodo';
 import Navbar from './Navbar';
+import ModalEdit from './ModalEdit';
 
 
 function Home(){
     const [todosAlta,setTodosAlta] = useState([])
     const [todosMedia,setTodosMedia] = useState([])
     const [todosBaja,setTodosBaja] = useState([])
+    const [isOpen,setIsOpen] = useState(false)
 
 
     useEffect(() => {
@@ -55,6 +57,7 @@ function Home(){
                                     nombre={todo.user}  
                                     todo={todo.todo}
                                     prioridad={todo.prioridad}
+                                    edit={setIsOpen}
                                 />
                             )
                         }) }
@@ -67,6 +70,7 @@ function Home(){
                                     nombre={todo.user}  
                                     todo={todo.todo}
                                     prioridad={todo.prioridad}
+                                    edit={setIsOpen}
                                 />
                             )
                         }) }
@@ -79,6 +83,7 @@ function Home(){
                                     nombre={todo.user}  
                                     todo={todo.todo}
                                     prioridad={todo.prioridad}
+                                    edit={setIsOpen}
                                 />
                             )
                         }) }
@@ -86,6 +91,7 @@ function Home(){
 
                 </div>
             </div>
+            <ModalEdit open={isOpen} />
         </div>
     )
 
