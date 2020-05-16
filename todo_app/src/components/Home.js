@@ -10,6 +10,7 @@ function Home(){
     const [todosMedia,setTodosMedia] = useState([])
     const [todosBaja,setTodosBaja] = useState([])
     const [isOpen,setIsOpen] = useState(false)
+    const [currentTodo,setCurrentTodo] = useState({})
 
 
     useEffect(() => {
@@ -57,7 +58,10 @@ function Home(){
                                     nombre={todo.user}  
                                     todo={todo.todo}
                                     prioridad={todo.prioridad}
-                                    edit={setIsOpen}
+                                    edit={ () => { 
+                                        setCurrentTodo(todo); 
+                                        setIsOpen(true) 
+                                    }}
                                 />
                             )
                         }) }
@@ -70,7 +74,10 @@ function Home(){
                                     nombre={todo.user}  
                                     todo={todo.todo}
                                     prioridad={todo.prioridad}
-                                    edit={setIsOpen}
+                                    edit={() => { 
+                                        setCurrentTodo(todo); 
+                                        setIsOpen(true) 
+                                    }}
                                 />
                             )
                         }) }
@@ -83,7 +90,10 @@ function Home(){
                                     nombre={todo.user}  
                                     todo={todo.todo}
                                     prioridad={todo.prioridad}
-                                    edit={setIsOpen}
+                                    edit={() => { 
+                                        setCurrentTodo(todo); 
+                                        setIsOpen(true) 
+                                    }}
                                 />
                             )
                         }) }
@@ -91,7 +101,7 @@ function Home(){
 
                 </div>
             </div>
-            <ModalEdit open={isOpen} />
+            <ModalEdit open={isOpen} close={setIsOpen} todo={currentTodo} />
         </div>
     )
 

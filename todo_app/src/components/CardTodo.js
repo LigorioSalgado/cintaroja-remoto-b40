@@ -16,8 +16,9 @@ function CardTodo(props){
                 <p className="card-text">{props.todo}</p>
             </div>
             <div className="card-footer text-center" >
-                <button className="btn btn-info" onClick={() => props.edit(true)}>Editar</button>
+                <button className="btn btn-info" onClick={() => props.edit()}>Editar</button>
             </div>
+           
         </div>
     )
 }

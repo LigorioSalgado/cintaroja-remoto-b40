@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useState,useEffect } from 'react';
 
 
 function ModalEdit(props){
+    const [user,setUser] = useState(props.todo.user)
+    const [todo,setTodo] = useState(props.todo.todo)
+    const [prioridad, setPrioridad ] = useState(props.todo.prioridad)
+
+    useEffect(() => {
+        setUser(props.todo.user)
+        setTodo(props.todo.todo)
+        setPrioridad(props.todo.prioridad)
+    },[props.todo]) //Con esto voy a capturrar los cambios que Home envia a modal
 
     return(
         <div className={props.open ? 'modal fade show' : 'modal fade'  } 
@@ -10,7 +19,7 @@ function ModalEdit(props){
                 <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title">Editar</h5>
-                        <button className="close">
+                        <button className="close" onClick={ () => props.close(false)}>
                             <span>&times;</span>
                         </button>
                     </div>
@@ -21,16 +30,27 @@ function ModalEdit(props){
                                 <form action="">
                                     <div className="form-group">
                                         <label htmlFor="">Nombre:</label>
-                                        <input type="text" className="form-control" />
+                                        <input type="text" 
+                                        value = {user}
+                                        onChange={(event) => setUser(event.target.value) }
+                                        className="form-control"  
+                                        />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="">To-do:</label>
-                                        <textarea className="form-control" name=""  cols="30" rows="10">
+                                        <textarea className="form-control" 
+                                        value={todo}
+                                        onChange={(event) => setTodo(event.target.value)}
+                                        name=""  cols="30" 
+                                        rows="10">
                                         </textarea>
                                     </div>
                                     <div className="form-group" >
                                         <label htmlFor="">Prioridad:</label>
-                                        <select className="form-control" name="" id="">
+                                        <select 
+                                        value={prioridad}
+                                        onChange={(event) => setPrioridad(event.target.value) }
+                                        className="form-control" name="" id="">
                                             <option value="3">Alta</option>
                                             <option value="2">Media</option>
                                             <option value="1">Baja</option>
