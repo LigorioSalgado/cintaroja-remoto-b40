@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.btn-card {
+  background-color: transparent;;
+  border: 1px #fff solid;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.btn-card:hover{
+  border: 1px #000 solid;
+  color: #000;
+}

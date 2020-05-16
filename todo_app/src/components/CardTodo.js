@@ -11,12 +11,17 @@ function CardTodo(props){
 
     return(
         <div className={bg[props.prioridad]}>
-            <div className="card-header">  Creado por:{props.nombre}</div>
+            <div className="card-header">  
+                Creado por:{props.nombre}
+                <button className="close">
+                    <span>&times;</span>
+                </button>
+            </div>
             <div className="card-body">
                 <p className="card-text">{props.todo}</p>
             </div>
             <div className="card-footer text-center" >
-                <button className="btn btn-info" onClick={() => props.edit()}>Editar</button>
+                <button className="btn btn-card" onClick={() => props.edit()}>Editar</button>
             </div>
            
         </div>
