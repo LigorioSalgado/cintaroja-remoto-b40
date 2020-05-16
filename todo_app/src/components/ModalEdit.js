@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-
+import axios from 'axios';
 
 function ModalEdit(props){
     const [user,setUser] = useState(props.todo.user)
@@ -11,6 +11,19 @@ function ModalEdit(props){
         setTodo(props.todo.todo)
         setPrioridad(props.todo.prioridad)
     },[props.todo]) //Con esto voy a capturrar los cambios que Home envia a modal
+
+    const updateTodo = (event) => {
+        event.preventDefault();
+        axios.put(`https://todoapp-e1226.firebaseio.com/todos/${props.todo.id}.json`, 
+                {
+                    user,
+                    todo,
+                    prioridad
+                }).then(() => {
+                    props.close(false)          
+                }).catch((error) => alert(error))
+
+    }
 
     return(
         <div className={props.open ? 'modal fade show' : 'modal fade'  } 
@@ -27,7 +40,7 @@ function ModalEdit(props){
                     <div className="modal-body">
                         <div className="row">
                             <div className="col-md-12 col-lg-12 col-sm-12">
-                                <form action="">
+                                <form onSubmit={updateTodo}>
                                     <div className="form-group">
                                         <label htmlFor="">Nombre:</label>
                                         <input type="text" 
