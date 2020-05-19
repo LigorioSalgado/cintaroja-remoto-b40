@@ -1,7 +1,16 @@
 import React from 'react';
-
+import axios from 'axios';
 
 function ModalDelete(props){
+
+    const deleteTodo = () => {       
+        axios.delete(`https://todoapp-e1226.firebaseio.com/todos/${props.todo.id}.json`)
+                .then(() => {
+                    props.close(false)
+                }).catch((error) => alert(error))
+
+    }
+
     return(
         <div className={props.open ? 'modal fade show' : 'modal fade'  } 
         style={{ display: props.open ? 'block' : 'none'  }}>
@@ -20,7 +29,7 @@ function ModalDelete(props){
                     </p>
                </div>
                <div className="modal-footer">
-                    <button className="btn btn-danger">Aceptar</button>
+                    <button className="btn btn-danger" onClick={deleteTodo}>Aceptar</button>
                     <button onClick={() => props.close(false)} className="btn btn-light">Cancelar</button>
                </div>
            </div>

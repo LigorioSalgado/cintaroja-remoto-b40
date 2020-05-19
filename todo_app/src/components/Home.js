@@ -38,7 +38,7 @@ function Home(){
             }).catch((error) => {
                 alert(error)
             })
-    },[isOpen])
+    },[isOpen,isOpenDelete])
 
     return(
         <div className="App">
