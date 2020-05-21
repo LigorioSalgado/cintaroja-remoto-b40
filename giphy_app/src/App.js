@@ -5,14 +5,24 @@ import CardGif from './CardGif';
 
 function App() {
   const URL = 'https://api.giphy.com/v1/gifs/search?api_key=pqpMKMEFrBUb427UCUNV2tuAffbHsExy&q='
-  const [search,setSearch] = useState('hello') //Este va a guardar el valor a buscar de los gifs
+  const [search,setSearch] = useState('') //Este va a guardar el valor a buscar de los gifs
   const [gifs, setGifs] = useState([]); //Esto va a guardar los gifs de la api
+  const [resultados,setResultados] = useState(false)
 
   useEffect(() => {
     console.log('Desde use effect')
 
     axios.get(URL+search).then((response) => {
-      setGifs(response.data.data) //primer data es de axios, segundo data es de respuesta de giphy
+      if(response.data.count > 0 && search){
+        setGifs(response.data.data)
+      }
+      
+      if (response.data.count <= 0 && search){
+        console.log(search)
+        setResultados(true)
+      }
+
+       //primer data es de axios, segundo data es de respuesta de giphy
     }).catch((error) => {
       console.log(error)
     })
@@ -23,7 +33,16 @@ function App() {
     event.preventDefault() //Evita que recargue la pagina al momento de hacer submit al form
     //llamada a la api
     axios.get(URL+search).then((response) => {
-      setGifs(response.data.data) //primer data es de axios, segundo data es de respuesta de giphy
+      if(response.data.data.length > 0 && search){
+        setGifs(response.data.data)
+        setResultados(false)
+
+      }
+      
+      if (response.data.data.length <= 0 && search){
+        setGifs([])
+        setResultados(true)
+      } //primer data es de axios, segundo data es de respuesta de giphy
     }).catch((error) => {
       console.log(error)
     })
@@ -46,16 +65,19 @@ function App() {
             </div>
         </div>
         <div className="row mt-5">
-          { gifs.length > 0 ? gifs.map((gif) => {
+          { gifs.length > 0 && gifs.map((gif) => {
             return(
               <CardGif title={gif.title} url={gif.images.downsized_large.url} />
             )
-          }) : (
-            <div className="col-12">
-                <h1>No hay resultados en tu busqueda 😪</h1>
-            </div>
-          )
+          })
         
+        }{
+          resultados && 
+            (
+              <div className="col-12">
+                  <h1>No hay resultados en tu busqueda 😪</h1>
+              </div>
+            )
         }
         </div>
       </div>
